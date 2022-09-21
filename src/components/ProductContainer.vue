@@ -63,7 +63,7 @@ export default {
   updated() {
     // console.log(this.visibleRecords)
     // console.log(localStorage)
-    this.updateVisibleRecords()
+    // this.updateVisibleRecords()
   },
   created() {
     ProductService.getDatas()
