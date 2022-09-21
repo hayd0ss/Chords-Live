@@ -163,7 +163,7 @@ export default {
       this.loggedUser = localStorage.loggedUser
       this.userGradient = localStorage.userGradient
       // console.log(localStorage)
-      console.log('loggedUSER ID: ' + localStorage.userId)
+      // console.log('loggedUSER ID: ' + localStorage.userId)
     }
     if (localStorage.userId) {
       this.isLoginVisible = false
