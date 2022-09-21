@@ -77,6 +77,9 @@ export default {
         console.log(error)
       })
   },
+  beforeUpdate() {
+    this.updateVisibleRecords()
+  },
 }
 </script>
 <style lang="scss" scoped>
