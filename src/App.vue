@@ -3,7 +3,7 @@
     <div>
       <router-link to="/#">
         <img
-          src="./assets/images/Chords2.svg"
+          src="./assets/images/chordstwo.svg"
           alt="chords-logo"
           class="logo"
         />
