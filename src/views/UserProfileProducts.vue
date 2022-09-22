@@ -308,42 +308,43 @@
           <textarea
             type="text-area"
             v-model.trim="editRecord.albumDescription"
-            class="description input long-input"
+            class="description input long-input large-text-area"
           ></textarea>
           <div class="lengths-div">
-            <label for="lp"
-              >LP
-              <input
-                type="radio"
-                v-model="editRecord.length"
-                value="lp"
-                id="lp"
-                name="length"
-                class="length"
-            /></label>
-            <label for="ep"
-              >EP
-              <input
-                type="radio"
-                v-model="editRecord.length"
-                value="ep"
-                id="ep"
-                name="length"
-                class="length"
-            /></label>
-            <div class="edit-buttons confirm-btn">
+            <div class="edit-lengths-wrap">
+              <label for="lp"
+                >LP
+                <input
+                  type="radio"
+                  v-model="editRecord.length"
+                  value="lp"
+                  id="lp"
+                  name="length"
+                  class="length"
+              /></label>
+              <label for="ep"
+                >EP
+                <input
+                  type="radio"
+                  v-model="editRecord.length"
+                  value="ep"
+                  id="ep"
+                  name="length"
+                  class="length"
+              /></label>
+            </div>
+            <div class="edit-buttons confirm-btn edit-product-btn">
               <button
-                class="edit"
-                @click="updateDoc(record._id)"
-              >
-                Confirm
-              </button>
-
-              <button
-                class="remove"
+                class="delete-btn"
                 @click="onCancel"
               >
                 Cancel
+              </button>
+              <button
+                class="edit-btn"
+                @click="updateDoc(record._id)"
+              >
+                Confirm
               </button>
             </div>
           </div>
@@ -667,7 +668,7 @@ export default {
 .lengths-div {
   display: flex;
   justify-content: space-between;
-  width: 20%;
+  // width: 20%;
   margin-bottom: 1rem;
 }
 
@@ -769,31 +770,46 @@ input[type='radio']:checked::before {
     .listing-edit-buttons {
       display: flex;
       align-items: flex-end;
-
-      .delete-btn {
-        height: 22px;
-        width: 115px;
-        margin: 5px;
-        background-color: white;
-        color: red;
-        border: 1px solid red;
-        font-size: 0.8em;
-        cursor: pointer;
-        transition: border-color 0.25s;
-      }
-
-      .edit-btn {
-        height: 22px;
-        width: 115px;
-        margin: 5px;
-        background-color: black;
-        color: white;
-        border: none;
-        font-size: 0.8em;
-        cursor: pointer;
-        transition: border-color 0.25s;
-      }
     }
   }
+}
+.delete-btn {
+  height: 22px;
+  width: 115px;
+  margin: 5px;
+  background-color: white;
+  color: red;
+  border: 1px solid red;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.large-text-area {
+  width: 100%;
+  height: 120px;
+  overflow-y: scroll;
+  resize: none;
+}
+
+.edit-btn {
+  height: 22px;
+  width: 115px;
+  margin: 5px;
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.edit-product-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.edit-lengths-wrap {
+  display: flex;
 }
 </style>
