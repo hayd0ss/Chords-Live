@@ -69,7 +69,7 @@ export default {
     logout() {
       localStorage.removeItem('loggedUser')
       localStorage.removeItem('userId')
-      document.location.reload(true) // force page reload
+      document.location.reload(true)
       window.location = '/'
     },
   },
@@ -83,7 +83,7 @@ export default {
   bottom: 3rem;
   display: flex;
   margin: auto 0;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   flex-direction: row;
   justify-content: space-between;
   line-height: 1.5rem;

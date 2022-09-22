@@ -7,7 +7,7 @@
       <h1>{{ loggedUser.slice(0, 1) }}</h1>
     </div>
 
-    <!-- Display input edit forms -->
+    <!-- Display input edit forms [START]-->
     <div
       class="edit-inputs"
       v-if="editId == loggedUserId"
@@ -45,8 +45,9 @@
         </button>
       </div>
     </div>
+    <!-- Display input edit forms [END]-->
 
-    <!-- Display logged in user details -->
+    <!-- Display logged in user details [START]-->
     <div
       v-else
       class="user-details"
@@ -61,6 +62,7 @@
       />
     </div>
   </div>
+  <!-- Display logged in user details [END ]-->
 </template>
 
 <script>
@@ -70,7 +72,6 @@ import Swal from 'sweetalert2'
 export default {
   data() {
     return {
-      // record: null,
       userNameDisplayed: '',
       userEmailDisplayed: '',
       userGradient: '',
@@ -82,8 +83,6 @@ export default {
         userName: '',
         userEmail: '',
       },
-      // users: [],
-      // testName: '',
     }
   },
   methods: {
@@ -95,12 +94,9 @@ export default {
       })
         .then(response => response.json())
         .then(data => {
-          // console.log(data)
           this.editId = data._id
           this.editUser.userName = data.userName
           this.editUser.userEmail = data.userEmail
-          // this.editRecord.artistName = data.artistName
-          // this.editRecord.genre = data.genre
         })
         .catch(err => {
           if (err) throw err
@@ -108,7 +104,6 @@ export default {
     },
     updateDoc(id) {
       Swal.fire({
-        // title: "Well done!",
         text: 'Your details were updated',
         icon: 'success',
         confirmButtonText: 'Wohoo!',
@@ -124,36 +119,17 @@ export default {
         .then(response => response.text())
         .then(data => {
           console.log(data)
-          // console.log(this.editUser.userName)
-          // this.testName = this.editUser.userEmail
           localStorage.userEmail = this.editUser.userEmail
           localStorage.loggedUser = this.editUser.userName
           this.editId = ''
           this.editUser.userName = ''
           this.editUser.userEmail = ''
           document.location.reload(true) // force page reload to show admin table
-          // console.log(this.users.userName)
-
-          // this.loggedUser = localStorage.loggedUser
-          // this.userEmail = localStorage.userEmail
-          // console.log(this.users)
-          // this.getAllUsers()
         })
         .catch(err => {
           if (err) throw err
         })
     },
-    // getAllUsers() {
-    //   fetch(usersApi)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       this.users = data
-    //       // console.log(this.users)
-    //     })
-    //     .catch(err => {
-    //       if (err) throw err
-    //     })
-    // },
     onCancel() {
       this.editId = ''
       this.editUser.userName = ''
@@ -164,11 +140,8 @@ export default {
   mounted() {
     this.userGradient = localStorage.userGradient
     this.loggedUser = localStorage.loggedUser
-    // this.userNameDisplayed = localStorage.loggedUser
     this.userEmailDisplayed = localStorage.userEmail
     this.loggedUserId = localStorage.userId
-    // console.log(localStorage)
-    // this.getAllUsers()
   },
 }
 </script>
@@ -247,15 +220,4 @@ export default {
     border: none;
   }
 }
-
-// .short-inputs {
-//   display: flex;
-//   align-items: baseline;
-//   justify-content: space-between;
-//   width: 20rem;
-
-//   label {
-//     width: 9rem;
-//   }
-// }
 </style>

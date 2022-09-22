@@ -1,4 +1,5 @@
 <template>
+  <!-- Landing page/product card display [START] -->
   <div class="product-card-container">
     <router-link
       :to="{ name: 'ProductDetails', params: { id: vinyls._id } }"
@@ -15,7 +16,7 @@
           </div>
           <p class="album">{{ vinyls.albumTitle }}</p>
           <div class="genre">
-            <span>{{ vinyls.genre.join(', ') }}</span>
+            <span v-show="vinyls.genre != ''">{{ vinyls.genre.join(', ') }}</span>
           </div>
           <p class="length">{{ vinyls.length.toUpperCase() }}</p>
           <p class="year">{{ vinyls.year }}</p>
@@ -40,11 +41,11 @@
       />
     </svg>
   </div>
+  <!-- Landing page/product card display [END] -->
 </template>
 
 <script>
 import SvgIcon from '@jamescoyle/vue-icon'
-// import { mdiAccount } from '@mdi/js'
 import { mdiHeartOutline } from '@mdi/js'
 
 export default {
@@ -59,6 +60,7 @@ export default {
     }
   },
   methods: {
+    // Heart icon toggle
     favourite() {
       event.target.classList.toggle('favourite')
     },

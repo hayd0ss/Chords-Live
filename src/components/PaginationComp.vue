@@ -5,7 +5,6 @@
     <span v-if="showPreviousLink()"
       class="pagination-btn"
       @click="updatePage(currentPage - 1)">
-      <!-- prettier-ignore -->
       &#5176
     </span>
     <div class="page-number"> {{ currentPage + 1 }} of {{ totalPages() }}</div>
@@ -13,7 +12,6 @@
     <span v-if="showNextLink()"
       class="pagination-btn"
       @click="updatePage(currentPage + 1)">
-      <!-- prettier-ignore -->
       &#5171
     </span>
   </div>
@@ -45,7 +43,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .pagination-wrapper {
   display: flex;
   justify-content: flex-end;

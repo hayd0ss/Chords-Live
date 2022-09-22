@@ -42,10 +42,6 @@
 
     <!-- Right side dispaly comments [START] -->
     <div class="comments-list-container">
-      <!-- <h2>Comments</h2> -->
-      <!-- {{ store.state.product_id }} -->
-      <!-- ---------------- -->
-
       <div
         v-for="comment in userPosts"
         :key="comment._id"
@@ -63,22 +59,7 @@
             <h4>{{ comment.userName }}</h4>
             <p>{{ comment.commentMsg }}</p>
           </div>
-
-          <!-- <h4>{{ comment.userName }}</h4> -->
-          <!-- <p class="ammend-comment"><span>edit </span> | <span>delete</span>
-        </p> -->
         </div>
-
-        <!-- <div v-show="2 == 2 ? true : false">
-          <p>{{ comment.commentMsg }}</p>
-          <p class="ammend-comment"><span>edit </span> | <span>delete</span></p>
-        </div> -->
-        <!-- <div>
-
-          <p class="user-comment">{{ comment.commentMsg }}</p>
-        </div> -->
-        <!-- <div>{{ userPosts }}</div> -->
-        <!-- <p>{{ postComments }}</p> -->
       </div>
     </div>
     <!-- Right side display comments [END] -->
@@ -86,7 +67,6 @@
 </template>
 
 <script>
-// import { faL } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2'
 import { inject } from 'vue'
 const usersApi = 'https://vc-users-login.netlify.app/.netlify/functions/api/'
@@ -104,20 +84,10 @@ export default {
     return {
       name: '',
       review: '',
-      // allComments: [],
-      // postComments: [],
-      // commentList: [],
-      // commentData: [],
-      // postsData: [],
       users: [],
       userPosts: [],
-      // allMessages: [],
-      // msglist: [],
       comments: [],
       maxChar: 300,
-      // editId: '',
-      // id: '',
-      // msg: '',
       commentFormValues: {
         commentMsg: '',
         productPostId: '',
@@ -154,7 +124,6 @@ export default {
         .then(response => response.text())
         .then(data => {
           this.getAllComments()
-          // this.hideModal()
           this.resetData()
           console.log(data)
         })
@@ -162,61 +131,6 @@ export default {
           if (err) throw err
         })
     },
-    // getMessages(postId) {
-    //   this.msglist = []
-    //   if (postId) {
-    //     let singlePost = []
-    //     this.allMessages.forEach(msg => {
-    //       if (msg.postId == postId) {
-    //         singlePost.push(msg)
-    //       }
-    //     })
-    //     this.msglist = singlePost
-    //   }
-    // },
-
-    // getAllMessages() {
-    //   fetch(commentsApi)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       // all messages
-    //       this.allMessages = data
-
-    //       // grouping message by post_id
-    //       this.postMessages = this.allMessages.reduce((results, msg) => {
-    //         results[msg.post_id] = results[msg.post_id] || []
-    //         results[msg.post_id].push(msg)
-    //         return results
-    //       })
-    //     })
-    //     .catch(err => {
-    //       if (err) throw err
-    //     })
-    // },
-    // getAllComments() {
-    //   fetch(commentsApi)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       this.commentFormValues = data
-
-    //       // console.log(this.commentFormValues)
-    //     })
-    //     .catch(err => {
-    //       if (err) throw err
-    //     })
-    // },
-    // getAllUsers() {
-    //   fetch(usersApi)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       this.users = data
-
-    //       // console.log(this.users)
-    //     })
-    //     .catch(err => {
-    //       if (err) throw err
-    //     })
-    // },
     getAllComments() {
       fetch(commentsApi)
         .then(response => response.json())
@@ -232,9 +146,7 @@ export default {
               }
             })
             this.userPosts = postData
-            // this.editComment()
           }
-          // console.log(this.comments)
         })
         .catch(err => {
           if (err) throw err
@@ -248,16 +160,10 @@ export default {
   mounted() {
     // set user_id
     if (localStorage.userId) {
-      // console.log(localStorage)
       this.commentFormValues.userName = localStorage.loggedUser
       this.commentFormValues.userId = localStorage.userId
     }
-    // console.log('StoredID = ' + this.store.state.product_id)
-    // console.log('StoredGraD = ' + this.store.state.user_gradient)
-
     this.getAllComments()
-
-    // this.usersGradient = this.users.userGradient
   },
 }
 </script>
@@ -270,7 +176,7 @@ export default {
 
 .comments-form-container {
   display: flex;
-  // width: 100%;
+
   .review-form {
     display: flex;
     flex-direction: column;
@@ -287,7 +193,6 @@ export default {
     margin-bottom: 5px;
   }
 
-  //dont know why font-size is messing with div sizing
   textarea {
     resize: none;
     font-family: inherit;
@@ -342,9 +247,6 @@ export default {
     .profile-circle {
       height: 60px;
       width: 60px;
-      // display: table-cell;
-      // text-align: center;
-      // vertical-align: middle;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -358,7 +260,6 @@ export default {
     .user-comment {
       display: flex;
       flex-direction: column;
-      // align-content: center;
       margin: 10px 10px 0px 10px;
       border-bottom: 1px solid;
       width: 100%;
@@ -397,7 +298,6 @@ export default {
 .profile-circle {
   height: 30px;
   width: 30px;
-  // display: table-cell;
   text-align: center;
   vertical-align: middle;
   border-radius: 50%;

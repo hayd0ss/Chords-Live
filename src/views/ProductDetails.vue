@@ -1,4 +1,5 @@
 <template>
+  <!-- Product description display for the record [START] -->
   <div
     v-if="record"
     class="product-details-container"
@@ -62,10 +63,13 @@
       </div>
     </div>
   </div>
+  <!-- Product description display for the record [END] -->
 
+  <!-- Comment display component [START] -->
   <div class="comment-section">
     <CommentSection />
   </div>
+  <!-- Comment display component [END] -->
 </template>
 
 <script>
@@ -107,22 +111,8 @@ export default {
     onClickHandler() {
       console.log(page)
     },
-    // getAllComments() {
-    //   fetch(commentsApi)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       this.comments = data
-    //       console.log(this.comments)
-    //     })
-    //     .catch(err => {
-    //       if (err) throw err
-    //     })
-    // },
   },
   mounted() {
-    // console.log(this.id)
-    // this.getAllComments()
-    // The product ID shared for comment connection
     store.state.product_id = this.id
   },
 }

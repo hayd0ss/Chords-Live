@@ -1,4 +1,5 @@
 <template>
+  <!-- Sell record inputs [START] -->
   <section class="sell-vinyl-section">
     <form
       id="signup-form"
@@ -23,10 +24,7 @@
       />
       <div class="long-inputs long-input">
         <div class="genres">
-          <p>
-            Genres:
-            <!-- <span>{{ listRecord.genre.join(' , ') }}</span> -->
-          </p>
+          <p>Genres:</p>
           <div class="checkbox-dropdown-list input">
             <label
               >Alternative
@@ -344,7 +342,6 @@
             icon="fa-solid fa-camera"
           />
         </label>
-        <!-- <p>Choose an image to upload</p> -->
       </div>
 
       <input
@@ -354,6 +351,7 @@
       />
     </form>
   </section>
+  <!-- Sell record inputs [END] -->
 </template>
 
 <script>
@@ -369,7 +367,6 @@ export default {
     return {
       image: 'image.png',
       max: 200,
-      //   isModalVisible: false,
       usersRecords: [],
       postsData: [],
       postsLoading: true,
@@ -391,7 +388,6 @@ export default {
         yearReleased: '',
         loggedUser: '',
         loggedUserId: '',
-        // productId: '',
       },
     }
   },
@@ -426,13 +422,13 @@ export default {
 
             if (err.response.data.error) {
               console.log(err.response.data.error)
-              //When trouble shooting, simple informations about the error can be found in err.response.data.error so it's good to display it
             }
           })
       } catch (error) {
         console.log(error)
       }
     },
+    // Function to insert the record for sale
     insertDoc() {
       // done
       fetch(productApi, {
@@ -445,7 +441,6 @@ export default {
         .then(response => response.text())
         .then(data => {
           this.loadAllData()
-          // this.hideModal()
           this.resetData()
           console.log(data)
         })
@@ -471,7 +466,6 @@ export default {
   mounted() {
     this.listRecord.loggedUser = localStorage.loggedUser
     this.listRecord.loggedUserId = localStorage.userId
-    // this.loadAllData()
   },
 }
 </script>
@@ -483,7 +477,6 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   width: 20rem;
-  //   height: 30rem;
 
   input {
     margin-bottom: 0.8rem;

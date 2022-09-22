@@ -338,7 +338,7 @@
               >
                 Confirm
               </button>
-              <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
+
               <button
                 class="remove"
                 @click="onCancel"
@@ -430,7 +430,6 @@ export default {
   },
   data() {
     return {
-      // isModalVisible: false,
       usersRecords: [],
       postsData: [],
       postsLoading: true,
@@ -471,7 +470,6 @@ export default {
         .then(response => response.json())
         .then(data => {
           this.usersRecords = data
-          // console.log('user id: ' + localStorage.userId)
           if (localStorage.userId) {
             let postData = []
             data.forEach(element => {
@@ -538,7 +536,6 @@ export default {
           this.editRecord.length = data.length
           this.editRecord.price = data.price
           this.editRecord.yearReleased = data.yearReleased
-          // this.listRecord.productId = data._id
         })
         .catch(err => {
           if (err) throw err
@@ -546,12 +543,10 @@ export default {
     },
     updateDoc(id) {
       Swal.fire({
-        // title: "Well done!",
         text: 'Your record was updated',
         icon: 'success',
         confirmButtonText: 'Rock n roll',
       })
-      // this.id = id
       fetch(productApi + id, {
         method: 'PUT',
         headers: {
@@ -592,13 +587,11 @@ export default {
     },
     addProductId() {
       this.listRecord.productId = element._id
-      // console.log(this.listRecord)
     },
   },
   mounted() {
     this.listRecord.loggedUser = localStorage.loggedUser
     this.listRecord.loggedUserId = localStorage.userId
-    // this.listRecord.productId = localStorage._id
     this.loadAllData()
   },
 }
@@ -732,9 +725,9 @@ input[type='radio']:checked::before {
     max-height: 280px;
     width: 60%;
 
-    h2{
-        margin-bottom:10px;
-      }
+    h2 {
+      margin-bottom: 10px;
+    }
 
     .title-description {
       display: flex;

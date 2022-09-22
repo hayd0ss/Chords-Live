@@ -26,10 +26,12 @@
         >
       </div>
     </div>
-    <div class="search-profile-container">
+    <div
+      v-if="loggedUser"
+      class="search-profile-container"
+    >
       <div class="profile-cmp">
         <router-link
-          v-if="loggedUser"
           to="/Profile"
           class="profile-icon"
         >
@@ -40,59 +42,46 @@
           >
         </router-link>
         <router-link
-          v-if="loggedUser"
           to="/Profile"
           class="top"
         >
           Profile</router-link
         >
-        <span
-          v-if="loggedUser"
-          class="profile-options text"
-          >|</span
-        >
+        <span class="profile-options text">|</span>
         <router-link
           to="/#"
           class="profile-options text"
-          v-if="loggedUser"
           @click="logout"
           title="Logout"
         >
           <span>Logout</span>
         </router-link>
-        <span
-          v-if="loggedUser"
-          class="profile-options"
-          >|</span
-        >
-        <span
-          v-if="loggedUser"
-          class="profile-options text"
-          >Cart</span
-        >
+        <span class="profile-options">|</span>
+        <span class="profile-options text">Cart</span>
       </div>
 
       <div
+        v-show="$route.name === 'Home'"
         class="box"
         @click=";(expandBox = '350px'), (radius = '0px')"
-        v-if="loggedUser"
       >
         <div name="search">
           <input
             type="text"
             class="input"
             name="txt"
-            placeholder="Search"
+            :placeholder="searchPlaceholder"
             onclick="this.value = '';"
             :style="{ width: expandBox, borderRadius: radius }"
             v-model="searchInput"
-            @change="searchFunction"
+            @keyup.enter="searchFunction"
             @blur=";(expandBox = ''), (radius = '50px')"
           />
 
           <img
             class="search-icon"
             src="./assets/images/search.png"
+            @click="searchFunction"
           />
         </div>
       </div>
@@ -119,7 +108,6 @@
 </template>
 
 <script>
-// import HeaderRow from './components/HeaderRow.vue'
 import FooterRow from './components/FooterRow.vue'
 import Login from './components/Login.vue'
 import { provide } from 'vue'
@@ -142,13 +130,14 @@ export default {
       radius: '',
       searchInput: '',
       search_value: '',
+      searchPlaceholder: 'Search',
     }
   },
   methods: {
     logout() {
       localStorage.removeItem('loggedUser')
       localStorage.removeItem('userId')
-      document.location.reload(true) // force page reload
+      document.location.reload(true)
       window.location = '/'
     },
     setLoggedUser(loggedInUser) {
@@ -158,20 +147,24 @@ export default {
       this.loginform = true
     },
     searchFunction() {
-      store.state.search_value = this.searchInput
-      this.searchInput = ''
-      // this.searchRes = store.state.search_value
+      if (this.searchInput == '') {
+        this.searchPlaceholder = 'Type something here'
+      } else {
+        store.state.search_value = this.searchInput
+        this.searchInput = ''
+        this.searchPlaceholder = 'Search'
+      }
     },
-    // shrinkBox() {
-    //   console.log('test')
-    // },
+  },
+  computed: {
+    isHomeView() {
+      return this.$route.name === 'Home'
+    },
   },
   mounted() {
     if (localStorage.loggedUser) {
       this.loggedUser = localStorage.loggedUser
       this.userGradient = localStorage.userGradient
-      // console.log(localStorage)
-      // console.log('loggedUSER ID: ' + localStorage.userId)
     }
     if (localStorage.userId) {
       this.isLoginVisible = false
