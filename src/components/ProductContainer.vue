@@ -138,11 +138,13 @@ export default {
   beforeUpdate() {
     this.updateVisibleRecords()
   },
+  // Calling for the search value
   computed: {
     searchTerm() {
       return this.store.state.search_value
     },
   },
+  // Passing the search value through
   watch: {
     searchTerm(newValue) {
       this.searchValue = newValue
