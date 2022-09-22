@@ -27,7 +27,12 @@
 
       <div class="product-titles">
         <h4 class="column-1">GENRE</h4>
-        <p class="record-genre column-2">{{ record.genre.join(', ') }}</p>
+        <p
+          v-show="record.genre != ''"
+          class="record-genre"
+        >
+          {{ record.genre.join(', ') }}
+        </p>
       </div>
 
       <div class="product-titles">
