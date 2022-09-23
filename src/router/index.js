@@ -32,8 +32,8 @@ const router = createRouter({
       component: UserProfileProducts
     },
     {
-      path: "/:catchAll(.*)",
-      name: "NotFound",
+      path: "/:catchAll(.*)*",
+      name: "PageNotFound",
       component: PageNotFound,
       meta: {
         requiresAuth: false
