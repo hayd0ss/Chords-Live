@@ -106,7 +106,13 @@ export default {
       this.searchRes = []
       let regEx = new RegExp(this.searchValue, 'gi')
       for (let i = 0; i < this.records.length; i++) {
-        let haystack = this.records[i].artistName
+        let haystack =
+          this.records[i].artistName +
+          this.records[i].albumTitle +
+          this.records[i].albumTitle +
+          this.records[i].yearReleased +
+          this.records[i].length +
+          this.records[i].genre
         var searchRes = haystack.match(regEx)
         if (searchRes != null) {
           this.searchRes.push(this.records[i])
